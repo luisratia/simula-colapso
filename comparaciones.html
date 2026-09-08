@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparaciones — Postulado Ratia v2</title>
+<link rel="stylesheet" href="styles.css">
+<script>
+MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="inner">
+    <div class="brand mono">POSTULADO RATIA <b>v2</b></div>
+    <div class="links">
+      <a href="index.html">Teoría</a>
+      <a href="comparaciones.html" class="active">Comparaciones</a>
+      <a href="simulacion.html">Simulación</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap wide">
+  <header class="page-head">
+    <div class="kicker mono">ESTADO EXPERIMENTAL · 2021–2026</div>
+    <h1>Comparaciones con los modelos establecidos de colapso</h1>
+    <p class="lede">Cómo se posiciona el Postulado Ratia (v2) frente a GRW, CSL, Diósi-Penrose y la decoherencia de Zurek, con las cotas experimentales más recientes.</p>
+  </header>
+
+  <article>
+
+    <h2>Tabla maestra</h2>
+    <table>
+      <thead>
+        <tr><th>Modelo</th><th>Mecanismo Causal</th><th>Origen (Energía/Masa)</th><th>Parámetro(s) Clave</th><th>Estado Experimental</th><th>Crítica Principal</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>GRW</strong></td>
+          <td>Localización espontánea aleatoria, independiente de masa por evento</td>
+          <td>Ruido estocástico universal, origen físico no especificado</td>
+          <td>$\lambda$, $r_C$</td>
+          <td>Valor original al borde de la zona de exclusión (interferometría de macromoléculas, rayos X)</td>
+          <td>No explica por qué existe el ruido; introduce constante nueva sin derivarla</td>
+        </tr>
+        <tr>
+          <td><strong>CSL</strong></td>
+          <td>Como GRW, ponderado por densidad de masa (amplificación colectiva)</td>
+          <td>Ruido estocástico universal ponderado por masa</td>
+          <td>$\lambda$, $r_C$</td>
+          <td>Acotado en 2025 por ruido rotacional de LISA Pathfinder (<i>Phys. Rev. A</i> 111, L020203) — la cota más fuerte a la fecha; también por átomos fríos, rayos X, BEC</td>
+          <td>Mismo problema de origen no derivado; versión estándar predice aumento indefinido de energía cinética</td>
+        </tr>
+        <tr>
+          <td><strong>CSL Disipativo</strong></td>
+          <td>Como CSL, con disipación finita a temperatura efectiva</td>
+          <td>Ruido + acoplamiento a baño a temperatura finita</td>
+          <td>$\lambda$, $r_C$, $T_{CSL}$</td>
+          <td>Mismas cotas que CSL estándar, relajadas por el parámetro extra</td>
+          <td>Resuelve conservación de energía a costa de un parámetro libre adicional</td>
+        </tr>
+        <tr>
+          <td><strong>Diósi-Penrose</strong></td>
+          <td>Endógeno: incompatibilidad GR / Mecánica Cuántica</td>
+          <td>Auto-energía gravitacional ($\Delta E_G$) — masa <strong>fundamental</strong></td>
+          <td>$R_0$ (longitud de localización)</td>
+          <td>Versión natural sin parámetros libres <span class="tag falsified">falsificada en 2021</span> (Donadi et al., <i>Nature Physics</i>, Gran Sasso). Rango permitido: $R_0\in[10^{-10},10^{-4}]$ m</td>
+          <td>La versión falsificada era la única sin ajuste libre; las que sobreviven requieren $R_0$ sin derivación independiente</td>
+        </tr>
+        <tr>
+          <td><strong>Decoherencia de Zurek</strong></td>
+          <td>Dispersión de fases por entrelazamiento con el entorno</td>
+          <td>No cuantifica colapso como evento único</td>
+          <td>$\Gamma(x)$ (dependiente del entorno)</td>
+          <td>Confirmada cuantitativamente — Hackermüller et al. (<i>Nature</i>, 2004) para C₇₀</td>
+          <td>No resuelve el "problema del resultado único"</td>
+        </tr>
+        <tr style="background:rgba(76,212,232,0.05);">
+          <td><strong>Postulado Ratia (v2)</strong></td>
+          <td>Exógeno: tasa de eventos resolutivos ($kx\gtrsim1$) con el entorno</td>
+          <td>Tasa de cuantos $R_\gamma$ — masa <strong>secundaria</strong> (vía $\sigma_{tot}$)</td>
+          <td>$R_\gamma$, $k$, $x$</td>
+          <td><span class="tag done">Verificado</span> contra Hackermüller et al. (2004): $\tau\approx9.4$ ms a 1400 K vs. tránsito real de 3.8 ms. Extensión a CSL/GRW en Sección 10 de la teoría.</td>
+          <td>Estructuralmente cercano a Zurek/Joos-Zeh — requiere el Postulado de Privilegio por Irreversibilidad (§2.6) para reclamar objetividad genuina</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>La falsificación de Diósi-Penrose (2021)</h2>
+    <p>Donadi, Piscicchia, Curceanu, Diósi, Laubenstein y Bassi publicaron en <i>Nature Physics</i> (2021) los resultados de un experimento subterráneo en el laboratorio de Gran Sasso (3,100 m bajo una montaña, para aislar ruido cósmico). El modelo Diósi-Penrose predice emisión de radiación espontánea detectable en núcleos cargados como subproducto del colapso gravitacional. El experimento buscó esa señal específica — y no la encontró.</p>
+    <div class="callout warn">
+      <strong>Resultado:</strong> se descarta la versión "natural" sin parámetros libres del modelo Diósi-Penrose ($R_0\approx10^{-14}$ m, tamaño nuclear). El rango experimentalmente permitido hoy es $R_0\in[10^{-10},10^{-4}]$ m — tres órdenes de magnitud por encima de la escala nuclear originalmente propuesta por Diósi.
+    </div>
+
+    <h2>La validación de Hackermüller et al. (2004) contra este modelo</h2>
+    <table>
+      <thead><tr><th>Cantidad</th><th>Valor</th></tr></thead>
+      <tbody>
+        <tr><td>Sistema</td><td>C₇₀ (Talbot-Lau, base de rejilla 991 nm)</td></tr>
+        <tr><td>Tiempo de tránsito real</td><td>≈ 3.8 ms (38 cm de base, ~100 m/s)</td></tr>
+        <tr><td>Temperatura de coherencia completa</td><td>hasta ≈ 1500 K</td></tr>
+        <tr><td>Temperatura de colapso completo</td><td>≈ 3000 K (calentamiento láser artificial)</td></tr>
+        <tr><td>Predicción de este modelo a 1400 K</td><td>$\tau_{colapso}\approx9.4$ ms — mismo orden de magnitud que el tránsito real</td></tr>
+        <tr><td>Predicción de v1 (antes de corregir)</td><td>$\tau_{colapso}\approx27.7$ ns — erróneo por ~6 órdenes de magnitud</td></tr>
+      </tbody>
+    </table>
+    <p>La razón física de por qué se necesita tanta temperatura: el C₇₀ tiene una brecha HOMO-LUMO de ≈1.6 eV. A 300 K ($k_BT\approx0.026$ eV), esa brecha es ~60 veces mayor que la energía térmica disponible — casi no hay transiciones electrónicas accesibles que emitan fotones térmicos a temperatura ambiente. El fullereno no se comporta como un cuerpo negro ideal de Stefan-Boltzmann; su emisión depende de una estructura de bandas discreta, exactamente lo que motiva el reemplazo de $\Phi_E\propto T^4$ por $R_\lambda(\lambda,T_m)$ con $\sigma_{abs}(\omega)$ real en la Sección 2.3 de la teoría.</p>
+
+    <h2>Por qué este modelo no compite con las pruebas de CSL/GRW</h2>
+    <p>Los experimentos que acotan $(\lambda,r_C)$ — osciladores levitados, LISA Pathfinder, interferometría de materia ultra-fría — operan deliberadamente a temperaturas de $10^{-2}$ a $10^{-9}$ K, para suprimir <em>todo</em> canal de decoherencia ambiental conocido, incluida la emisión térmica de fotones: el mecanismo causal de este trabajo. Usando $\Phi_E\propto T^4$: a $T=1$ K, $\Phi_E\sim5.7\times10^{-8}\,W/m^2$; a $T\sim10^{-7}$ K, $R_\gamma$ es efectivamente nulo.</p>
+    <div class="callout">
+      Este modelo <strong>no es puesto a prueba</strong> por esos experimentos — no porque los evada, sino porque ambos mecanismos ocupan regímenes físicos distintos. La prueba correcta para este modelo es la <strong>dependencia con la temperatura interna</strong> del sistema (como ya hizo, de hecho, Hackermüller et al.), no el diagrama criogénico de CSL/GRW.
+    </div>
+
+    <h2>Valores de referencia CSL/GRW (2020–2026)</h2>
+    <table>
+      <thead><tr><th>Referencia</th><th>$\lambda$ (s⁻¹)</th><th>$r_C$ (m)</th><th>Fuente</th></tr></thead>
+      <tbody>
+        <tr><td>GRW original</td><td>$\sim10^{-16}$</td><td>$\sim10^{-7}$</td><td>Ghirardi, Rimini & Weber (1986)</td></tr>
+        <tr><td>Adler (mejorado)</td><td>$10^{-8}$–$10^{-6}$</td><td>$10^{-7}$–$10^{-6}$</td><td>Adler (2007) — <span class="tag falsified">descartado</span></td></tr>
+        <tr><td>Mejor cota actual</td><td>hasta $\sim10^{-14}$–$10^{-15}$</td><td>variable</td><td>Osciladores levitados, interferometría de materia, LISA Pathfinder (2025)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Referencias citadas en esta página</h2>
+    <ul>
+      <li>Donadi, S. et al. (2021). Underground test of gravity-related wave function collapse. <i>Nature Physics</i>.</li>
+      <li>Hackermüller, L. et al. (2004). Decoherence of matter waves by thermal emission of radiation. <i>Nature</i> 427, 711–714.</li>
+      <li>Ghirardi, G. C., Rimini, A. & Weber, T. (1986). Unified dynamics for microscopic and macroscopic systems. <i>Phys. Rev. D</i> 34, 470.</li>
+      <li>Adler, S. L. (2007). Lower and upper bounds on CSL parameters. <i>J. Phys. A</i> 40, 2935.</li>
+      <li>Altamura, D. G. A. et al. (2025). Improved bounds on collapse models from LISA Pathfinder. <i>Phys. Rev. A</i> 111, L020203.</li>
+      <li>Bassi, A., Lochan, K., Satin, S., Singh, T. P. & Ulbricht, H. (2013). Models of wave-function collapse, underlying theories, and experimental tests. <i>Rev. Mod. Phys.</i> 85, 471.</li>
+    </ul>
+
+  </article>
+
+  <footer class="page-foot">
+    <span>Luis Alberto Ratia · ORCID <a href="https://orcid.org/0009-0001-1431-2449" target="_blank">0009-0001-1431-2449</a> · Licencia CC-BY 4.0</span>
+    <span class="mono">Preprint v2</span>
+  </footer>
+</div>
+
+</body>
+</html>

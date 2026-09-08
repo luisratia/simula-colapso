@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Postulado Ratia v2 — Modelo de Umbral de Disipación Energética</title>
+<link rel="stylesheet" href="styles.css">
+<script>
+MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="inner">
+    <div class="brand mono">POSTULADO RATIA <b>v2</b></div>
+    <div class="links">
+      <a href="index.html" class="active">Teoría</a>
+      <a href="comparaciones.html">Comparaciones</a>
+      <a href="simulacion.html">Simulación</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <header class="page-head">
+    <div class="kicker mono">LUIS ALBERTO RATIA · ORCID 0009-0001-1431-2449 · CC-BY 4.0</div>
+    <h1>An Energy-Dissipation Threshold Model for Wave Function Collapse in Open Quantum Systems</h1>
+    <p class="lede">Modelo dinámico de reducción objetiva donde el colapso de la función de onda es impulsado por la tasa de cuantos resolutivos intercambiados entre el sistema cuántico y su entorno — versión 2, corregida y validada cuantitativamente.</p>
+  </header>
+
+  <div class="callout">
+    <strong>Nota de versión (v1 → v2).</strong> Esta segunda versión corrige un error estructural identificado en la v1: la condición de umbral original ($\Delta E_{dis}\cdot\tau_{colapso}\geq\hbar/2$) sobreestimaba la velocidad de colapso en ~6 órdenes de magnitud frente a datos experimentales publicados (Hackermüller et al., <i>Nature</i> 2004). La v2 reemplaza esta condición por un criterio de tasa de eventos resolutivos ($\Gamma(x)\cdot\tau_{colapso}\approx1$), añade la conexión formal con la Ecuación Estocástica de Schrödinger, y reposiciona el modelo frente a Diósi-Penrose, CSL y GRW. Detalle completo en la Sección 8.
+  </div>
+
+  <div class="toc">
+    <div class="toc-title mono">CONTENIDO</div>
+    <ol>
+      <li><a href="#s1">Introducción y Motivación Física</a></li>
+      <li><a href="#s2">Formalismo Matemático Completo</a></li>
+      <li><a href="#s3">Derivación del Tiempo de Colapso</a></li>
+      <li><a href="#s4">Evaluaciones Numéricas y Validación</a></li>
+      <li><a href="#s5">Comparativa con Otros Modelos</a></li>
+      <li><a href="#s6">Implicaciones Termodinámicas</a></li>
+      <li><a href="#s7">Mecanismos para Evitar el Colapso</a></li>
+      <li><a href="#s8">Nota de Transparencia (v1→v2)</a></li>
+      <li><a href="#s9">Trabajo Futuro</a></li>
+      <li><a href="#s10">Diagrama de Exclusión Estándar</a></li>
+      <li><a href="#s11">Extensión a Otros Sistemas</a></li>
+    </ol>
+  </div>
+
+  <article>
+
+    <h2 id="s1">1. Introducción y Motivación Física</h2>
+    <p>La interpretación de Copenhague introduce la reducción del estado como un colapso discontinuo provocado por un "observador" o aparato de medida, sin especificar la dinámica interna del proceso. Por otro lado, las teorías de decoherencia estándar explican la pérdida de interferencia mediante el entrelazamiento con el entorno, pero no resuelven el problema del resultado único (el "problema de la medida").</p>
+    <p>Este trabajo formaliza un modelo dinámico de colapso objetivo fundamentado en la termodinámica de no-equilibrio y la teoría de sistemas cuánticos abiertos. Se postula que el colapso no depende de la conciencia ni de un acto abstracto de observación, sino del intercambio e irreversible disipación de energía entre el sistema y el entorno — cuantificado, como se corrige en esta versión, mediante la tasa de cuantos resolutivos, no la energía bruta acumulada.</p>
+
+    <h2 id="s2">2. Formalismo Matemático Completo</h2>
+
+    <h3>2.1. Hamiltoniano del Sistema Abierto y Ecuación de Lindblad</h3>
+    <p>Un sistema cuántico no aislado ($H_0$) acoplado a un entorno/medidor ($H_{obs}$) mediante un término de interacción $V_{int}$ se describe por la matriz de densidad $\rho(t)$ bajo la Ecuación Máster de Lindblad:</p>
+    <div class="eq">$$\frac{d\rho}{dt} = -\frac{i}{\hbar}[H_0,\rho] + \sum_k \gamma_k\left(L_k\rho L_k^\dagger - \frac{1}{2}\{L_k^\dagger L_k,\rho\}\right)$$</div>
+    <p>Donde $L_k$ son los operadores de salto asociados a la transferencia de energía y momento con el medidor, y $\gamma_k$ las tasas de acoplamiento.</p>
+
+    <h3>2.2. Condición del Umbral Crítico — Tasa de Resolución Espacial <span class="tag done">CORREGIDA</span></h3>
+    <p>La condición original de la v1 ($\Delta E_{dis}\cdot\tau_{colapso}\geq\hbar/2$) trataba la energía disipada como si un único evento de interacción, arbitrariamente grande, cruzara el umbral de incertidumbre — apropiado para una interacción fuerte y puntual, no para disipación continua por radiación térmica.</p>
+    <p><strong>Condición corregida:</strong> el colapso ocurre cuando la tasa acumulada de eventos que resuelven espacialmente la superposición alcanza el orden de la unidad:</p>
+    <div class="eq boxed">$$\Gamma(x)\cdot\tau_{colapso}\approx 1$$</div>
+    <p>donde $\Gamma(x)$ es la tasa de decoherencia (unidades $s^{-1}$):</p>
+    <div class="eq">$$\Gamma(x) = R_{tot}\left[1-\eta(x)\right],\qquad \eta(x)=\frac{1}{R_{tot}}\int_0^\infty d\lambda\; R_\lambda(\lambda)\,\text{sinc}\left(\frac{2\pi x}{\lambda}\right)$$</div>
+    <p>$R_\lambda(\lambda)$ es la tasa espectral de emisión/absorción de cuantos del sistema con el entorno, y $R_{tot}=\int_0^\infty R_\lambda\,d\lambda$ la tasa total.</p>
+
+    <h3>2.3. Tasa Espectral Real y Cuantización <span class="tag done">CORREGIDA</span></h3>
+    <p>Para un sistema con capacidad calorífica finita $C_V$ a temperatura interna $T_m$:</p>
+    <div class="eq">$$R_\omega(\omega,T_m) = \frac{\omega^2}{\pi^2c^2}\,\sigma_{abs}(\omega)\,\exp\left[-\frac{\hbar\omega}{k_BT_m}-\frac{k_B}{2C_V}\left(\frac{\hbar\omega}{k_BT_m}\right)^2\right]$$</div>
+    <p>donde $\sigma_{abs}(\omega)$ es la sección eficaz de absorción/emisión real del sistema (medida experimentalmente, p. ej. Coheur, Carleer & Colin 1996 para el C₇₀), y el segundo término exponencial corrige por el hecho de que el sistema no es un baño térmico infinito. Esta formulación reemplaza por completo la Sección 2.3 de la v1 (cuantización vía $E=nh\nu$), cuya reescritura algebraica resultaba en una cancelación trivial de $\hbar$ sin contenido predictivo independiente.</p>
+
+    <h3>2.4. Ecuación Estocástica de Schrödinger (SSE)</h3>
+    <div class="eq">$$d|\Psi_t\rangle = \left[-\frac{i}{\hbar}H_0\,dt - \frac{\gamma}{2}(V_{int}-\langle V_{int}\rangle_t)^2\,dt + \sqrt{\gamma}(V_{int}-\langle V_{int}\rangle_t)\,dW_t\right]|\Psi_t\rangle$$</div>
+
+    <h3>2.5. Conexión Formal entre Lindblad y la SSE: Selección Genuina de un Resultado Único <span class="tag done">NUEVA</span></h3>
+    <p>La Sección 2.1 describe la evolución <strong>promediada</strong> del sistema, mientras que la Sección 2.4 describe una <strong>trayectoria individual</strong>. La decoherencia estándar opera solo al nivel de la Sección 2.1: explica la desaparición de coherencias, pero no selecciona un resultado único. Esta sección cierra esa brecha.</p>
+    <p><strong>Teorema de desenredo</strong> (Barchielli & Holevo 1995; Gisin & Percival 1992): toda ecuación de Lindblad con operadores hermíticos $L_k$ admite una representación estocástica en trayectorias de estado puro tal que $\rho(t)=\mathbb{E}[|\Psi_t\rangle\langle\Psi_t|]$. Con la identificación $L_k\equiv V_{int}$, $\gamma_k\equiv\gamma$, el desenredo tipo <i>Quantum State Diffusion</i> reproduce exactamente la SSE de 2.4.</p>
+    <p><strong>Resultado de convergencia</strong> (Gisin & Percival 1992; Bassi & Ghirardi, <i>Phys. Rep.</i> 379, 2003): $|\Psi_t\rangle$ converge casi seguramente a un único autoestado $|\lambda_i\rangle$ de $V_{int}$, con probabilidad $P(\lambda_i)=|\langle\lambda_i|\Psi_0\rangle|^2$ (Regla de Born, emergente) y tiempo característico:</p>
+    <div class="eq">$$\tau_{localización} \sim \frac{1}{\gamma\,(\Delta\lambda)^2}$$</div>
+    <p>Esta forma es estructuralmente idéntica a $\Gamma(x)\sim(kx)^2$, lo que fija sin ambigüedad:</p>
+    <div class="eq boxed">$$\gamma \equiv \Gamma(x)$$</div>
+    <p>El marco completo (2.1–2.5) queda autoconsistente: la tasa que gobierna la desaparición ensemble-promediada de coherencias es la misma que gobierna la convergencia estocástica hacia un resultado único con probabilidades de Born.</p>
+
+    <h3>2.6. No-Unicidad del Desenredo y el Postulado de Privilegio por Irreversibilidad <span class="tag done">NUEVA</span></h3>
+    <p>La ecuación de Lindblad admite infinitos desenredos distintos, todos matemáticamente válidos. Esto distingue a GRW/CSL (ruido físico universal, no derivado de trazar sobre ningún entorno particular) de este trabajo, cuyo $\Gamma(x)$ se deriva de trazar sobre un entorno específico (fotones emitidos) — el mismo defecto que la Sección 1 atribuye a la decoherencia de Zurek.</p>
+    <p><strong>Postulado de Privilegio por Irreversibilidad:</strong> el desenredo físicamente realizado es aquel en que los cuantos disipados escapan con probabilidad de retorno despreciable dentro del tiempo relevante:</p>
+    <div class="eq">$$P_{retorno}(\tau_{colapso}) \ll 1$$</div>
+    <p>La emisión térmica al vacío abierto satisface esto trivialmente; un acoplamiento reversible o confinado (cavidad de alta finesa) no lo satisface — en ese caso el modelo predice, correctamente, solo decoherencia reversible (revivals), consistente con QED de cavidades.</p>
+
+    <h2 id="s3">3. Derivación Analítica del Tiempo de Colapso <span class="tag done">CORREGIDA</span></h2>
+    <div class="eq boxed">$$\tau_{colapso}(x) = \frac{1}{\Gamma(x)} = \frac{1}{R_{tot}\left[1-\eta(x)\right]}$$</div>
+    <ul>
+      <li><strong>Régimen no resolutivo</strong> ($x\ll\lambda$): $\eta(x)\to1$, $\tau_{colapso}\to\infty$ — la superposición persiste indefinidamente.</li>
+      <li><strong>Régimen resolutivo</strong> ($x\gtrsim\lambda$): $\eta(x)\to0$, $\tau_{colapso}\to1/R_{tot}$ — satura, sin depender ya de $x$.</li>
+      <li><strong>Aislamiento perfecto</strong> ($R_{tot}\to0$): $\tau_{colapso}\to\infty$ en todos los casos.</li>
+    </ul>
+
+    <h2 id="s4">4. Evaluaciones Numéricas y Validación Experimental <span class="tag done">CORREGIDA</span></h2>
+    <table>
+      <thead><tr><th>Parámetro / Sistema</th><th>Electrón Individual</th><th>Fullereno C₆₀</th></tr></thead>
+      <tbody>
+        <tr><td>Régimen</td><td>Microscópico / vacío tenue</td><td>Mesoscópico / auto-emisión ~1400 K</td></tr>
+        <tr><td>Separación ($x$)</td><td>1 µm</td><td>1 µm (≈ período de rejilla real, 991 nm)</td></tr>
+        <tr><td>Cantidad relevante</td><td>$N_\gamma$ ($\Phi_E=10^{-11}\,W/m^2$)</td><td>$R_{tot}\approx100\,s^{-1}$</td></tr>
+        <tr><td>$\tau_{colapso}$</td><td>$\sim2.2\times10^{21}\,s$</td><td>$\sim9.4\times10^{-3}\,s$</td></tr>
+        <tr><td>Dato experimental</td><td>Coherencia preservada indefinidamente</td><td>Tránsito real: <strong>3.8 ms</strong> (Hackermüller et al. 2004)</td></tr>
+        <tr><td>Concordancia</td><td>Cualitativa</td><td><strong>Mismo orden de magnitud</strong> (9.4 ms vs. 3.8 ms)</td></tr>
+      </tbody>
+    </table>
+    <p>Corrección lograda respecto a v1: de $2.77\times10^{-8}\,s$ (erróneo por ~6 órdenes de magnitud) a $9.4\times10^{-3}\,s$ (concordancia de orden de magnitud). Ver <a href="comparaciones.html">Comparaciones</a> para el detalle experimental completo.</p>
+
+    <h2 id="s5">5. Comparativa con Otros Modelos de Colapso Objetivo <span class="tag done">ACTUALIZADA</span></h2>
+    <table>
+      <thead><tr><th>Modelo</th><th>Origen de los Cuantos Resolutivos</th><th>Rol de la Masa</th></tr></thead>
+      <tbody>
+        <tr><td>Disipación Energética (este trabajo)</td><td>$R_\lambda(\lambda,T_m)$, ponderada por $\sigma_{abs}(\omega)$</td><td>Secundario (vía $\sigma_{abs}$, $C_V$)</td></tr>
+        <tr><td>Diósi-Penrose (DP)</td><td>No aplica — mecanismo geométrico</td><td>Fundamental ($\Delta E_G\propto Gm^2/\Delta x$)</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Relación con Diósi-Penrose:</strong> no existe un límite matemático de $\Gamma(x)$ que reproduzca $\Delta E_G=Gm^2/\Delta x$ — dependen de constantes físicas distintas sin puente derivable. Son mecanismos <strong>complementarios</strong>, no anidados:</p>
+    <div class="eq">$$\tau_{colapso}^{efectivo} = \min\left(\tau_{Ratia},\ \tau_{DP}\right)$$</div>
+    <p>Tabla comparativa completa, con estado experimental 2021–2026 de GRW, CSL, DP y Zurek, en la página de <a href="comparaciones.html">Comparaciones</a>.</p>
+
+    <h2 id="s6">6. Implicaciones Termodinámicas, Cosmológicas y Neurobiológicas <span class="tag done">ACTUALIZADA</span></h2>
+    <p><strong>La Flecha del Tiempo y la Entropía:</strong> el colapso es la fuente microscópica de la irreversibilidad termodinámica, cuantificada mediante la tasa de eventos resolutivos $\Gamma(x)$. La producción de entropía asociada es $\Delta S\approx k_B\ln(2)\cdot N_{eventos}$, conectando explícitamente con el principio de Landauer.</p>
+    <p><strong>El Universo Clásico:</strong> el mundo cotidiano no es clásico por naturaleza intrínseca, sino porque está inmerso en un flujo continuo de cuantos resolutivos que "miden" los objetos de forma constante — cuantificable caso por caso mediante $\sigma_{abs}(\omega)$.</p>
+    <p><strong>Percepción y Mente Humana:</strong> la mente humana no origina el colapso mediante la conciencia. El cerebro es un procesador termodinámico que captura señales sensoriales cuya interacción ya disipó cuantos muy por encima del umbral resolutivo. La mente únicamente procesa el resultado colapsado — no lo causa.</p>
+
+    <h2 id="s7">7. Mecanismos para Evitar o Controlar el Colapso Cuántico</h2>
+    <ul>
+      <li><strong>Aislamiento de Flujo</strong> ($R_{tot}\to0$): criogenia cerca del cero absoluto y alto vacío.</li>
+      <li><strong>Desacoplamiento Dinámico:</strong> pulsos de inversión de fase a frecuencias menores que $\tau_{colapso}$.</li>
+      <li><strong>Subespacios Libres de Decoherencia (DFS):</strong> codificación en estados donde $V_{int}|\Psi\rangle=0$.</li>
+      <li><strong>Corrección Activa de Errores Cuánticos (QEC):</strong> evacuación continua de entropía hacia qubits auxiliares.</li>
+    </ul>
+    <p>Explóralos interactivamente en la <a href="simulacion.html">página de simulación</a> mediante el control de "Aislamiento".</p>
+
+    <h2 id="s8">8. Nota de Transparencia sobre la Corrección v1 → v2</h2>
+    <p>Durante el proceso de revisión se identificó que la condición de umbral original (Sección 2.2 de la v1) predecía tiempos de colapso incompatibles con datos experimentales publicados por un factor de ~$10^6$, al aplicarse al C₆₀/C₇₀ bajo radiación térmica a temperatura ambiente. La causa raíz fue el uso de una relación de incertidumbre energía-tiempo de evento único en un régimen de disipación continua de múltiples cuantos, donde el criterio correcto es una tasa de eventos resolutivos acumulados, consistente con el formalismo de decoherencia colisional establecido (Joos & Zeh 1985; Hornberger et al. 2004).</p>
+    <p>Esta corrección se documenta abiertamente, siguiendo el principio de que un postulado físico debe ser modificado o abandonado cuando la evidencia experimental lo contradice.</p>
+
+    <h2 id="s9">9. Trabajo Futuro</h2>
+    <ol>
+      <li>Conexión $\Gamma(x)\leftrightarrow\gamma$ de la SSE <span class="tag done">Resuelto — Secciones 2.5–2.6</span></li>
+      <li>Posicionamiento en el diagrama de exclusión CSL/GRW <span class="tag done">Resuelto — Sección 10</span></li>
+      <li>Extensión de $\sigma_{abs}(\omega)$ a otros sistemas <span class="tag done">Resuelto — Sección 11</span></li>
+      <li>Cuantificar $P_{retorno}(\tau_{colapso})$ para cavidades de alta finesa <span class="tag pending">Pendiente</span></li>
+    </ol>
+
+    <h2 id="s10">10. Posicionamiento respecto al Diagrama de Exclusión Estándar (CSL/GRW)</h2>
+    <p>Los experimentos que constriñen $(\lambda,r_C)$ de CSL/GRW se realizan a temperaturas criogénicas extremas ($10^{-2}$–$10^{-9}$ K), suprimiendo deliberadamente todo canal de decoherencia ambiental — incluida la emisión térmica, mecanismo causal de este trabajo. Con $\Phi_E\propto T^4$: a $T\to0$, $R_\gamma\to0$ y $\tau_{colapso}\to\infty$.</p>
+    <p><strong>Conclusión:</strong> este modelo y CSL/GRW no compiten por el mismo espacio de parámetros — son mecanismos complementarios que dominan en regímenes distintos (sistemas térmicamente activos vs. sistemas ultra-aislados y fríos). La firma experimental distintiva de este trabajo es la fuerte dependencia con la temperatura, ausente en el ruido universal de CSL/GRW. Detalle completo, con valores numéricos actuales, en <a href="comparaciones.html">Comparaciones</a>.</p>
+
+    <h2 id="s11">11. Extensión a Otros Sistemas de Prueba</h2>
+    <p>La metodología de <strong>secciones eficaces de absorción absolutas mediante retroceso de fotones</strong> (Eibenberger et al., <i>Phys. Rev. Lett.</i> 112, 2014) permite medir $\sigma_{abs}(\omega)$ directamente para cualquier molécula candidata usada en un interferómetro de materia, sin depender de espectroscopía externa.</p>
+    <table>
+      <thead><tr><th>Sistema candidato</th><th>Masa aprox.</th><th>Relevancia</th></tr></thead>
+      <tbody>
+        <tr><td>Porfirinas/ftalocianinas (Fein et al. 2019)</td><td>hasta ~25,000 amu</td><td>Espectro de absorción distinto al C₆₀</td></tr>
+        <tr><td>Difracción UV profunda (Simonović et al. 2024)</td><td>Variable</td><td>Régimen de $\sigma_{abs}(\omega)$ no explorado en la validación original</td></tr>
+        <tr><td>Clusters en rango MDa</td><td>hasta ~10⁶ amu</td><td>Frontera con el nicho de CSL/GRW</td></tr>
+      </tbody>
+    </table>
+
+  </article>
+
+  <footer class="page-foot">
+    <span>Luis Alberto Ratia · ORCID <a href="https://orcid.org/0009-0001-1431-2449" target="_blank">0009-0001-1431-2449</a> · Licencia CC-BY 4.0</span>
+    <span class="mono">Preprint v2</span>
+  </footer>
+</div>
+
+</body>
+</html>
